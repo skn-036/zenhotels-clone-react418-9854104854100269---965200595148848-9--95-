@@ -65,6 +65,7 @@ export const getWeekDay = (date) => {
 };
 
 export const formatDate = (date, formatString = 'dd-MM-yyyy') => {
+  if (!date) return '';
   date = new Date(date);
   if (!isValid(date)) return '';
   return format(date, formatString);

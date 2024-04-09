@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { RxExternalLink } from 'react-icons/rx';
 import { HotelSearchPlaceholder } from '@/components/pages/hotel/placeholder-search/HotelSearchPlaceholder';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 export const Banner = () => {
   const [backgroundClass, setBackgroundClass] = useState('bg-primary');
@@ -53,8 +54,30 @@ export const Banner = () => {
             </a>
           </div>
 
-          <div className="min-h-[192px] w-full rounded-b-md rounded-tr-md bg-white p-4 shadow-google">
+          <div className="w-full space-y-5 rounded-b-md rounded-tr-md bg-white p-5 shadow-google">
             <HotelSearchPlaceholder />
+
+            {/* radio group */}
+            <RadioGroup
+              defaultValue="leisure"
+              className="flex-start !flex gap-4"
+            >
+              <div className="flex-start gap-2">
+                <RadioGroupItem
+                  id="leisure"
+                  value="leisure"
+                />
+                <label htmlFor="leisure">Leisure</label>
+              </div>
+
+              <div className="flex-start gap-2">
+                <RadioGroupItem
+                  id="business"
+                  value="business"
+                />
+                <label htmlFor="leisure">Business</label>
+              </div>
+            </RadioGroup>
           </div>
         </div>
       </div>

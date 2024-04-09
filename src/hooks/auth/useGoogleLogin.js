@@ -58,7 +58,6 @@ const useGoogleLogin = () => {
     removeLoginCallbackListener(resolve);
 
     if (!data?.query?.code) {
-      removeLoginCallbackListener(resolve);
       return resolve({
         error: true,
         message: 'Failed to get auth code. Please try again later.'

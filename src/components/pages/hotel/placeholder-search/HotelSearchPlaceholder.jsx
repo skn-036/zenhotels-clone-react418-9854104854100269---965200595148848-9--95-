@@ -3,9 +3,11 @@ import { Form } from '@/components/ui/form';
 
 import { useForm } from 'react-hook-form';
 import { SearchRegion } from './SearchRegion';
+import SearchDate from './SearchDate';
 import { Button } from '@/components/ui/Button';
 import SearchGuest from './SearchGuests';
 import { v4 } from 'uuid';
+import { addDays } from 'date-fns';
 
 export const HotelSearchPlaceholder = memo(({ initialSearchData }) => {
   const [searchData, setSearchData] = useState(
@@ -13,7 +15,9 @@ export const HotelSearchPlaceholder = memo(({ initialSearchData }) => {
       ? initialSearchData
       : {
           hotelOrRegion: null,
-          guests: [{ id: v4(), adults: 2, children: [] }]
+          guests: [{ id: v4(), adults: 2, children: [] }],
+          checkin: addDays(new Date(), 4),
+          checkout: addDays(new Date(), 5)
         }
   );
 
@@ -43,10 +47,18 @@ export const HotelSearchPlaceholder = memo(({ initialSearchData }) => {
           {/* date and guests */}
           <div className="flex flex-1 flex-col gap-4 md:flex-row">
             {/* guests */}
-            <div className="w-full min-w-[144px]">
+            <div className="w-full max-w-[144px]">
               <SearchGuest
                 setSearchData={setSearchData}
                 initialData={searchData.guests}
+              />
+            </div>
+
+            {/* date selection */}
+            <div className="flex-1">
+              <SearchDate
+                searchData={searchData}
+                setSearchData={setSearchData}
               />
             </div>
           </div>

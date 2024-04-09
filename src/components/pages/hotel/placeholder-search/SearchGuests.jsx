@@ -73,7 +73,7 @@ const SearchGuest = memo(({ className, setSearchData, initialData }) => {
               {`${totalRooms} room${totalRooms > 1 ? 's' : ''}`}
             </div>
 
-            <div className="flex-between h-5 w-full font-semibold text-muted-foreground">
+            <div className="flex-between h-5 w-full font-semibold">
               <div>{`${totalGuests} guest${totalGuests > 1 ? 's' : ''}`}</div>
               <HiChevronDown
                 size={20}
@@ -138,7 +138,7 @@ const SearchGuest = memo(({ className, setSearchData, initialData }) => {
 
                 <div className="flex flex-1 flex-col gap-1">
                   <div className="text-xs font-medium text-muted-foreground">
-                    Adults
+                    Children
                   </div>
 
                   <div className="flex-start flex-wrap gap-2">
