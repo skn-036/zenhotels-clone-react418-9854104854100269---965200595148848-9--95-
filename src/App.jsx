@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import PaymentGatewayProvider from '@/components/context/payment-gateway/PaymentGatewayProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,7 @@ const App = () => {
   const [store, setStore] = useState(null);
 
   useEffect(() => {
-    const initStote = async () => {
+    const initStore = async () => {
       try {
         const store = await createAppStore();
         setStore(store);
@@ -32,7 +33,7 @@ const App = () => {
         setLoading(false);
       }
     };
-    initStote();
+    initStore();
   }, []);
 
   if (loading) {
@@ -47,19 +48,21 @@ const App = () => {
     return (
       <StoreProvider store={store}>
         <QueryClientProvider client={queryClient}>
-          <RouteProvider />
+          <PaymentGatewayProvider>
+            <RouteProvider />
 
-          <ToastContainer
-            autoClose={8000}
-            hideProgressBar={true}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
+            <ToastContainer
+              autoClose={8000}
+              hideProgressBar={true}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
+          </PaymentGatewayProvider>
         </QueryClientProvider>
       </StoreProvider>
     );

@@ -628,3 +628,11 @@ export const addItemToArray = (array, index, item) => {
 
   return [...firstPart, item, ...secondPart];
 };
+
+export const makeDelay = async (delay = 1000) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, delay);
+  });
+}

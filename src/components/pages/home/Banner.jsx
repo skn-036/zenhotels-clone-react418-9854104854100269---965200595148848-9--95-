@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import { RxExternalLink } from 'react-icons/rx';
 import { HotelSearchPlaceholder } from '@/components/pages/hotel/placeholder-search/HotelSearchPlaceholder';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { convertToJsonApiQuery } from '@/lib/helpers/axiosRequest';
+import { useNavigate } from 'react-router-dom';
 
 export const Banner = () => {
+  const navigate = useNavigate();
+
   const [backgroundClass, setBackgroundClass] = useState('bg-primary');
   useEffect(() => {
     const image = new Image();
@@ -27,6 +31,12 @@ export const Banner = () => {
       }, 3000);
     };
   }, []);
+
+  const onSearch = (searchData) => {
+    const queryString = convertToJsonApiQuery(searchData, [], 'yyyy-MM-dd');
+    navigate(`/hotel-search?${queryString}`);
+    console.log(searchData);
+  };
 
   return (
     <div
@@ -55,7 +65,7 @@ export const Banner = () => {
           </div>
 
           <div className="w-full space-y-5 rounded-b-md rounded-tr-md bg-white p-5 shadow-google">
-            <HotelSearchPlaceholder />
+            <HotelSearchPlaceholder onSearch={onSearch} />
 
             {/* radio group */}
             <RadioGroup

@@ -54,17 +54,17 @@ const LoadingButton = React.forwardRef(
     ref
   ) => {
     return (
-      <button
+      <Button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       >
-        {loading && <Spinner className={cn('h-5 w-5', spinnerClass)} />}
+        {loading && <Spinner className={cn('h-5 w-5 fill-white', spinnerClass)} />}
         {children}
-      </button>
+      </Button>
     );
   }
 );
 LoadingButton.displayName = 'LoadingButton';
 
-export { Button, LoadingButton, buttonVariants };
+export { Button, LoadingButton };

@@ -2,6 +2,7 @@ import Home from '@/pages/app/Home';
 import HotelSearch from '@/pages/app/HotelSearch';
 import GoogleAuthCallback from '@/pages/full/GoogleAuthCallback';
 import Login from '@/pages/full/Login';
+import Payment from '@/pages/app/Payment';
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     element: GoogleAuthCallback,
     requireAuth: false,
     layout: 'full'
+  },
+  {
+    path: '/payment',
+    element: Payment,
+    requireAuth: true,
+    layout: 'app'
   }
 ];
 

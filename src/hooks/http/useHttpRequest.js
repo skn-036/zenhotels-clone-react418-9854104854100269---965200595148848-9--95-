@@ -15,6 +15,7 @@ const useHttpRequest = (path = '') => {
   const [deleting, setDeleting] = useState(false);
 
   const [lastGetData, setLastGetData] = useState(null);
+  const [lastSaveData, setLastSaveData] = useState(null);
 
   const getData = async (options = {}) => {
     try {
@@ -41,14 +42,16 @@ const useHttpRequest = (path = '') => {
       setSaving(true);
       const data = await saveDataRequest(path, params, options);
 
+      setLastSaveData(data);
       setSaving(false);
+
       return data;
     } catch (error) {
       setSaving(false);
       if (!options?.hideToast) showToastFromError(error);
 
       if (error?.code === 'ERR_CANCELED') {
-        options?.expectsArray ? [] : null;
+        return lastSaveData ? lastSaveData : options?.expectsArray ? [] : null;
       }
       if (options?.throw) throw error;
       return options?.expectsArray ? [] : null;
