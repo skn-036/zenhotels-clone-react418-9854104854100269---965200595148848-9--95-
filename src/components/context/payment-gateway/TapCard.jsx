@@ -14,7 +14,7 @@ import { makeDelay } from '@/lib/helpers/commonHelpers';
 import useHttpRequest from '@/hooks/http/useHttpRequest';
 import { toast } from 'react-toastify';
 
-const { renderTapCard, Theme, Currencies, Direction, Edges, Locale, tokenize } =
+const { renderTapCard, Theme, Direction, Edges, Locale, tokenize } =
   window.CardSDK;
 
 const initializeTapCard = (customer, setCardLoading, onSuccess) => {
@@ -22,7 +22,7 @@ const initializeTapCard = (customer, setCardLoading, onSuccess) => {
     publicKey: import.meta.env.VITE_TAP_PUBLIC_KEY,
     transaction: {
       amount: 1,
-      currency: Currencies.AED
+      currency: 'AED',
     },
     acceptance: {
       supportedBrands: ['AMERICAN_EXPRESS', 'VISA', 'MASTERCARD', 'MADA'],
